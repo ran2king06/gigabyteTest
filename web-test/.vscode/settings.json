@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "undefined/subscriptions/adff40ac-9c9d-4a70-896b-3488aa0e01a1/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/vn-giga",
+  "appService.deploySubpath": "."
+}
