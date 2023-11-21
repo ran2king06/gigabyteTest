@@ -13,7 +13,8 @@ const newsContent = ref($attrs.newsContent);
 
 const config = {
     headers: {
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin': "*"
     }
 };
 

@@ -17,7 +17,8 @@ onMounted(() => {
 
     const config = {
         headers: {
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            'Access-Control-Allow-Origin': "*"
         }
     };
 
