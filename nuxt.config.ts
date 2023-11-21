@@ -14,7 +14,7 @@ export default defineNuxtConfig({
         '^/api': {
           target: 'https://www.travel.taipei/open-api/',
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
+          rewrite: (path) => path.replace(/^\/api/, '/')
         }
       }
     }
