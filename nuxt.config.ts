@@ -6,8 +6,8 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
-  vite: {
-    server: {
+  nitro: {
+    devProxy: {
       cors: true,
       open: true,
       proxy: {
