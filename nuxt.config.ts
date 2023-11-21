@@ -12,17 +12,17 @@ export default defineNuxtConfig({
  
     },
   },
-  // vite: {
-  //   server: {
-  //     proxy: {
-  //       '/api': {
-  //         target: 'https://www.travel.taipei/open-api/',
-  //         changeOrigin: true,
-  //         rewrite: (path) => path.replace(/^\/api/, '')
-  //       }
-  //     }
-  //   }
-  // },
+  vite: {
+    server: {
+      proxy: {
+        '/api': {
+          target: 'https://www.travel.taipei/open-api/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
+      }
+    }
+  },
   generate: {
     fallback: true
   },
