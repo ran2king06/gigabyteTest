@@ -31,10 +31,10 @@ onMounted(() => {
             lang = "en";
         }
 
-        const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
-        const url = 'https://www.travel.taipei/open-api/'; // origin api url
+        // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+        // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-        await axios.get(`${cors}${url}` + lang + '/Events/News', config)
+        await axios.get('/api' + lang + '/Events/News', config)
             .then(response => {
                 responseData.value = response.data.data;
             })
