@@ -6,14 +6,16 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
-  axios: {
-    proxy: true
-  },
-  proxy: {
-    '/api': {
-      target: 'https://www.travel.taipei/open-api',
-      pathRewrite: {
-        '^/api' : '/'
+  vite: {
+    server: {
+      cors: true,
+      open: true,
+      proxy: {
+        '^/api': {
+          target: 'https://www.travel.taipei/open-api/',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        }
       }
     }
   },
