@@ -30,7 +30,7 @@ onMounted(() => {
             lang = "en";
         }
 
-        await axios.get('https://www.travel.taipei/open-api' + lang + '/Events/News', config)
+        await axios.get('https://www.travel.taipei/open-api' + '/' + lang + '/Events/News', config)
             .then(response => {
                 responseData.value = response.data.data;
             })
