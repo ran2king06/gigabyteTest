@@ -14,11 +14,13 @@ onMounted(() => {
     const currentPath = route.path;
     let lang = "en" // Default English
 
-    const config = {
-        headers: {
-            'Accept': 'application/json'
-        }
-    };
+    // const config = {
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Access-Control-Allow-Origin': '*',
+    //         'Access-Control-Allow-Headers': 'Content-Type,token'
+    //     }
+    // };
 
 
     const getTaipeiTripInfo = async () => {
@@ -33,7 +35,7 @@ onMounted(() => {
         // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
         // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-        await axios.get('/api/' + lang + '/Events/News', config)
+        await axios.get('/api/' + lang + '/Events/News')
             .then(response => {
                 responseData.value = response.data.data;
             })

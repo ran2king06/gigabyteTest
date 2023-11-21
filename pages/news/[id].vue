@@ -10,11 +10,13 @@ let lang = "en" // Default English
 const newsTitle = ref($attrs.newsTitle);
 const newsContent = ref($attrs.newsContent);
 
-const config = {
-    headers: {
-        'Accept': 'application/json'
-    }
-};
+// const config = {
+//     headers: {
+//         'Accept': 'application/json',
+//         'Access-Control-Allow-Origin': '*',
+//         'Access-Control-Allow-Headers': 'Content-Type,token'
+//     }
+// };
 
 // 若超過50個字，則只顯示50個字
 const truncateText = (text, maxLength) => {
@@ -39,7 +41,7 @@ const getTaipeiTripInfoDetails = async () => {
     // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
     // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-    await axios.get('/api/' + lang + '/Events/News', config)
+    await axios.get('/api/' + lang + '/Events/News')
         .then(response => {
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;
