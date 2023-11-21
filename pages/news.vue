@@ -34,9 +34,9 @@ onMounted(() => {
         const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
         const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-        await fetch(`${cors}${url}` + lang + '/Events/News', config)
+        await axios.get(`${cors}${url}` + lang + '/Events/News', config)
             .then(response => {
-                responseData.value = response;
+                responseData.value = response.data.data;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
