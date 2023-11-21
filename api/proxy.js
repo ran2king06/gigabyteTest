@@ -5,6 +5,9 @@ module.exports = (req, res) => {
     if (req.url.startsWith('/api')) {
         target = 'https://www.travel.taipei/open-api/'
     }
+
+    console.log('Proxying request:', req.url, 'to target:', target);
+    
     createProxyMiddleware({
         target,
         changeOrigin: true,
