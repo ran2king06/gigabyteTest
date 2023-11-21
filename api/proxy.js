@@ -2,7 +2,7 @@ const { createProxyMiddleware } = require('http-proxy-middleware')
 
 module.exports = (req, res) => {
     let target = ''
-    if (req.url.startsWith('/backend')) {
+    if (req.url.startsWith('/api')) {
         target = 'https://www.travel.taipei/open-api'
     }
     // 创建代理对象并转发请求
@@ -10,7 +10,7 @@ module.exports = (req, res) => {
         target,
         changeOrigin: true,
         pathRewrite: {
-            '^/backend/': '/',
+            '^/api/': '/',
         },
     })(req, res)
 }
