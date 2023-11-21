@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     server: {
       proxy: {
         '/api': {
-          target: 'https://www.travel.taipei/open-api',
+          target: 'https://www.travel.taipei',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         }
