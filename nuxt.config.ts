@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   },
   nitro: {
     devProxy: {
-        'https://gigabyte-test.vercel.app/api/': {
+        '/trip-api': {
           target: 'https://www.travel.taipei/open-api/',
           changeOrigin: true,
       }

@@ -40,7 +40,7 @@ const getTaipeiTripInfoDetails = async () => {
     // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
     // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-    await axios.get('/api' + '/' + lang + '/Events/News')
+    await axios.get('/trip-api' + '/' + lang + '/Events/News')
         .then(response => {
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;
