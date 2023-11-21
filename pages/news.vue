@@ -30,7 +30,7 @@ onMounted(() => {
             lang = "en";
         }
 
-        await axios.get('/api' + '/open-api' + '/' + lang + '/Events/News', config)
+        await axios.get('/api' + '/open-api/' + lang + '/Events/News', config)
             .then(response => {
                 responseData.value = response.data.data;
             })
