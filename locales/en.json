@@ -1,5 +1,7 @@
 {
     "entrance": "ENTRY",
     "home": "Home",
-    "news": "News"
+    "news": "News",
+
+    "news-title": "Latest News"
 }

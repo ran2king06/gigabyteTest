@@ -85,6 +85,8 @@ onUnmounted(() => {
 .news-detail-container {
     display: block;
     width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
 }
@@ -93,9 +95,11 @@ onUnmounted(() => {
     border-bottom: 1px solid grey;
     padding: 0 0 25px 0;
     margin-bottom: 25px;
+    color: #fff;
 }
 
 .news-detail-container p {
+    color: #fff;
     white-space-collapse: preserve-breaks;
 }
 </style>

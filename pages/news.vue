@@ -63,10 +63,11 @@ function newsPass(title: string, content: string) {
 </script>
 
 <template>
+     <h1>{{ $t('news-title')}}</h1>
     <div class="news-container">
         <div v-if="!$route.params.id" class="news-list-container">
             <div v-for="(data, index) in responseData" :key="index" class="news-list-item">
-                <span>{{ formatDate(data.posted) }}</span>
+                <span class="date">{{ formatDate(data.posted) }}</span>
                 <NuxtLink @click="newsPass(data.title, data.description)" :to="localeLocation(
                     {
                         name: 'news-id',
@@ -83,19 +84,50 @@ function newsPass(title: string, content: string) {
 </template>
 
 <style scoped>
+.news-container {
+    margin-bottom: 50px;
+}
+.news-list-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
 .news-list-item {
-    display: flex;
-    padding: 5px 10px;
+    padding: 7.5px 10px;
     box-sizing: border-box;
     margin: 10px;
     align-items: center;
+    text-decoration: none;
+    background: #4b4d4e;
+}
+
+.news-list-item .date {
+    font-size: 0.8em;
 }
 
 .news-list-item span {
     margin: 0 10px;
+    display: block;
+    color: #fff;
+    text-decoration-line: underline;
+    text-decoration-color: #3ba0da;
+    text-shadow: 1px 1px 1px #000000;
 }
 
 .news-list-item {
     text-decoration: none;
+}
+
+.news-list-item span {
+    color: #fff;
+}
+
+h1 {
+    color: #FF6400;
+    font-weight: 400;
+    max-width: 1000px;
+    margin: 0 auto 10px auto;
 }
 </style>

@@ -5,7 +5,6 @@ module.exports = (req, res) => {
     if (req.url.startsWith('/api')) {
         target = 'https://www.travel.taipei'
     }
-    // 创建代理对象并转发请求
     createProxyMiddleware({
         target,
         changeOrigin: true,

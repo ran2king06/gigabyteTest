@@ -1,54 +1,66 @@
 <script setup lang="ts">
-  const switchLocalePath = useSwitchLocalePath();
-  const route = useRoute();
-  const localePath = useLocalePath();
+const switchLocalePath = useSwitchLocalePath();
+const route = useRoute();
+const localePath = useLocalePath();
 </script>
 
 
 <template>
-  <header class="header-lang">
-    <span>
-      <NuxtLink :to="localePath('index')">{{ $t('home') }}</NuxtLink>
-    </span>
-    <span>
-      <NuxtLink :to="localePath('news')">{{ $t('news') }}</NuxtLink>
-    </span>
-    <span v-if="!route.params.id">
-      <NuxtLink :to="switchLocalePath('tw')">中</NuxtLink> 
-      / 
-      <NuxtLink :to="switchLocalePath('en')">EN</NuxtLink>
-    </span>
+  <header>
+    <div class="header-lang">
+      <div class="header-logo">
+        <img src="" alt="">
+      </div>
+      <div class="header-menu">
+        <span>
+          <NuxtLink :to="localePath('index')">{{ $t('home') }}</NuxtLink>
+        </span>
+        <span>
+          <NuxtLink :to="localePath('news')">{{ $t('news') }}</NuxtLink>
+        </span>
+        <span v-if="!route.params.id">
+          <NuxtLink :to="switchLocalePath('tw')">中</NuxtLink>/
+          <NuxtLink :to="switchLocalePath('en')">EN</NuxtLink>
+        </span>
+      </div>
+    </div>
   </header>
 </template>
 
 <style scoped>
-header.header-lang {
+header {
+  width: 100%;
+  height: auto;
+  z-index: 99;
+  transition: 1s;
+  background-color: rgba(0,0,0, 0.2);
   position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid #F36002;
+}
+
+.header-lang {
   display: flex;
-  right: 5%;
-  top: 5%;
   align-items: center;
   justify-content: space-between;
 }
 
-header.header-lang span {
-  margin: 0 15px;
+.header-lang span {
+  padding: 15px;
+  margin: 0 10px;
+  box-sizing: border-box;
+  display: inline-block;
+  color: #fff;
 }
 
-header.header-lang a {
-  margin: 0 10px;
+.header-lang a {
   cursor: pointer;
   text-decoration: none;
+  color: #fff;
 }
 
-.hello {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3rem;
-  padding: 2rem;
-}
-
-body {
-  margin: 0;
-  padding: 0;
+.header-lang a:hover {
+  border-bottom: 2px solid #fff;
 }
 </style>
