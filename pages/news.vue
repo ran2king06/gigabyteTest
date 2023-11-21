@@ -17,10 +17,10 @@ onMounted(() => {
 
     const config = {
         headers: {
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': "https://gigabyte-test.vercel.app/"
+            'Accept': 'application/json'
         }
     };
+
 
     const getTaipeiTripInfo = async () => {
         if (currentPath.includes('/tw')) {
@@ -31,7 +31,10 @@ onMounted(() => {
             lang = "en";
         }
 
-        await axios.get('https://www.travel.taipei/open-api/' + lang + '/Events/News', config)
+        const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
+        const url = 'https://www.travel.taipei/open-api/'; // origin api url
+
+        await axios.get(`${cors}${url}` + lang + '/Events/News', config)
             .then(response => {
                 responseData.value = response.data.data;
             })
@@ -64,7 +67,7 @@ function newsPass(title: string, content: string) {
 </script>
 
 <template>
-     <h1>{{ $t('news-title')}}</h1>
+    <h1>{{ $t('news-title') }}</h1>
     <div class="news-container">
         <div v-if="!$route.params.id" class="news-list-container">
             <div v-for="(data, index) in responseData" :key="index" class="news-list-item">
@@ -88,6 +91,7 @@ function newsPass(title: string, content: string) {
 .news-container {
     margin-bottom: 50px;
 }
+
 .news-list-container {
     display: grid;
     grid-template-columns: auto auto auto;
