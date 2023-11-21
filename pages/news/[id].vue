@@ -20,7 +20,6 @@ const newsContent = ref($attrs.newsContent);
 
 // 若超過50個字，則只顯示50個字
 const truncateText = (text, maxLength) => {
-    console.log(text);
     if (text.length > maxLength) {
         return text.slice(0, maxLength) + '...';
     } else {
