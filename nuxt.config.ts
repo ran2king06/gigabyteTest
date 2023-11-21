@@ -6,11 +6,14 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
-  nitro: {
-    devProxy: {
-        '/trip-api': {
-          target: 'https://www.travel.taipei/open-api/',
-          changeOrigin: true,
+  axios: {
+    proxy: true
+  },
+  proxy: {
+    '/api': {
+      target: 'https://www.travel.taipei/open-api',
+      pathRewrite: {
+        '^/api' : '/'
       }
     }
   },
