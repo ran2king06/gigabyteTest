@@ -3,6 +3,8 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 const route = useRoute();
 const $attrs = useAttrs();
+const runtimeConfig = useRuntimeConfig();
+
 const currentPath = route.path;
 let lang = "en" // Default English
 
@@ -35,7 +37,7 @@ const getTaipeiTripInfoDetails = async () => {
         lang = "en";
     }
 
-    await axios.get('/api/' + lang + '/Events/News', config)
+    await axios.get(runtimeConfig.public.API_BASE_URL + lang + '/Events/News', config)
         .then(response => {
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;

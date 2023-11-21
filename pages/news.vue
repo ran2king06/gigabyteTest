@@ -6,6 +6,7 @@ import { ref, onMounted } from 'vue';
 const responseData = ref();
 const route = useRoute();
 const localeLocation = useLocalePath();
+const runtimeConfig = useRuntimeConfig();
 
 let newsTitle = "";
 let newsContent = "";
@@ -29,7 +30,7 @@ onMounted(() => {
             lang = "en";
         }
 
-        await axios.get('/api/' + lang + '/Events/News', config)
+        await axios.get(runtimeConfig.public.API_BASE_URL + lang + '/Events/News', config)
             .then(response => {
                 responseData.value = response.data.data;
             })

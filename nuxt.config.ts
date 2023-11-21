@@ -6,7 +6,12 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
     }
   },
-
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.API_BASE_URL,
+ 
+    },
+  },
   vite: {
     server: {
       proxy: {
