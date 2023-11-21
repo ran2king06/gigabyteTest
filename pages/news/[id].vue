@@ -3,7 +3,6 @@ import axios from 'axios';
 import { ref, onMounted, onUnmounted } from 'vue';
 const route = useRoute();
 const $attrs = useAttrs();
-const runtimeConfig = useRuntimeConfig();
 
 const currentPath = route.path;
 let lang = "en" // Default English
@@ -40,7 +39,7 @@ const getTaipeiTripInfoDetails = async () => {
     // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
     // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
-    await axios.get('/api' + lang + '/Events/News', config)
+    await axios.get('/api/' + lang + '/Events/News', config)
         .then(response => {
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;
