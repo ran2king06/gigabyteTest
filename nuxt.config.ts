@@ -1,5 +1,6 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  dev: 'production',
   app: {
     head: {
       charset: 'utf-8',
