@@ -37,7 +37,7 @@ const getTaipeiTripInfoDetails = async () => {
         lang = "en";
     }
 
-    await axios.get('/api' + '/' + lang + '/Events/News', config)
+    await axios.get('https://www.travel.taipei/open-api' + '/' + lang + '/Events/News', config)
         .then(response => {
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;
