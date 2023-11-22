@@ -19,6 +19,13 @@ const loading = ref(true)
 //     }
 // };
 
+useHead({
+    title: newsTitle,
+    meta: [
+    { name: 'description', content: newsContent }
+  ],
+})
+
 // 若超過50個字，則只顯示50個字
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
