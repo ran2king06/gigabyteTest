@@ -9,7 +9,6 @@ let lang = "en" // Default English
 
 const newsTitle = ref($attrs.newsTitle);
 const newsContent = ref($attrs.newsContent);
-const loading = ref(true)
 
 // const config = {
 //     headers: {
@@ -19,6 +18,13 @@ const loading = ref(true)
 //     }
 // };
 
+useHead({
+    title: newsTitle,
+    meta: [
+    { name: 'description', content: newsContent }
+  ],
+})
+
 // 若超過50個字，則只顯示50個字
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -27,24 +33,9 @@ const truncateText = (text, maxLength) => {
         return text;
     }
 }
-useSeoMeta({
-  title: "test",
-  ogTitle: "test",
-  description: "test",
-  ogDescription: "test",
-})
-
-useHead({
-    title: newsTitle,
-    meta: [
-    { name: 'description', content: newsContent }
-  ],
-})
 
 // 頁面刷新或直接進去則呼叫此 Function
 const getTaipeiTripInfoDetails = async () => {
-    loading.value = true;
-
     if (currentPath.includes('/tw')) {
         lang = "zh-tw";
     } else if (currentPath.includes('/en')) {
@@ -58,8 +49,6 @@ const getTaipeiTripInfoDetails = async () => {
 
     await axios.get('/api' + '/' + lang + '/Events/News')
         .then(response => {
-            loading.value = false;
-            
             const getNews = response.data.data.filter((r) => {
                 return r.id.toString() === route.params.id;
             });
@@ -72,19 +61,15 @@ const getTaipeiTripInfoDetails = async () => {
                 description: truncateText(getNews[0].description, 50),
                 ogDescription: truncateText(getNews[0].description, 50),
             })
-
-
         })
         .catch(error => {
             console.error('Error fetching data:', error);
-            loading.value = false;
         });
 }
 
 onMounted(() => {
     if (route.params.id) {
         getTaipeiTripInfoDetails();
-        loading.value = false;
     }
 });
 
@@ -101,21 +86,12 @@ onUnmounted(() => {
 
 <template>
     <div class="news-detail-container">
-        <img v-if="loading === true" src="/img/loading.svg" alt="" class="loading-svg">
         <h1>{{ newsTitle }}&nbsp;</h1>
         <p v-html="newsContent"></p>
     </div>
 </template>
 
 <style scoped>
-.loading-svg {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-}
-
-
 .news-detail-container {
     display: block;
     width: 100%;
@@ -123,8 +99,6 @@ onUnmounted(() => {
     margin: 0 auto;
     padding: 0 15px;
     box-sizing: border-box;
-    position: relative;
-    min-height: 600px;
 }
 
 .news-detail-container h1 {
