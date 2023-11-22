@@ -19,6 +19,15 @@ const loading = ref(true)
 //     }
 // };
 
+// 若超過50個字，則只顯示50個字
+const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+        return text.slice(0, maxLength) + '...';
+    } else {
+        return text;
+    }
+}
+
 useSeoMeta({
   title: newsTitle,
   ogTitle: newsTitle,
@@ -32,15 +41,6 @@ useHead({
     { name: 'description', content: newsContent }
   ],
 })
-
-// 若超過50個字，則只顯示50個字
-const truncateText = (text, maxLength) => {
-    if (text.length > maxLength) {
-        return text.slice(0, maxLength) + '...';
-    } else {
-        return text;
-    }
-}
 
 // 頁面刷新或直接進去則呼叫此 Function
 const getTaipeiTripInfoDetails = async () => {
