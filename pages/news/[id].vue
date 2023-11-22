@@ -27,12 +27,11 @@ const truncateText = (text, maxLength) => {
         return text;
     }
 }
-
 useSeoMeta({
-  title: newsTitle,
-  ogTitle: newsTitle,
-  description: truncateText(newsContent, 50),
-  ogDescription: truncateText(newsContent, 50),
+  title: "test",
+  ogTitle: "test",
+  description: "test",
+  ogDescription: "test",
 })
 
 useHead({
