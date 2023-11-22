@@ -10,20 +10,15 @@ const localeLocation = useLocalePath();
 let newsTitle = "";
 let newsContent = "";
 
+const loading = ref(true)
+
 onMounted(() => {
     const currentPath = route.path;
     let lang = "en" // Default English
 
-    // const config = {
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Access-Control-Allow-Origin': '*',
-    //         'Access-Control-Allow-Headers': 'Content-Type,token'
-    //     }
-    // };
-
-
     const getTaipeiTripInfo = async () => {
+        loading.value = true;
+
         if (currentPath.includes('/tw')) {
             lang = "zh-tw";
         } else if (currentPath.includes('/en')) {
@@ -32,15 +27,14 @@ onMounted(() => {
             lang = "en";
         }
 
-        // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
-        // const url = 'https://www.travel.taipei/open-api/'; // origin api url
-
         await axios.get('/api' + '/' + lang + '/Events/News')
             .then(response => {
                 responseData.value = response.data.data;
+                loading.value = false;
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
+                loading.value = false;
             });
     }
     getTaipeiTripInfo();
@@ -61,8 +55,6 @@ function formatDate(inputDate: string) {
 function newsPass(title: string, content: string) {
     newsTitle = title;
     newsContent = content
-
-
 }
 
 </script>
@@ -82,6 +74,7 @@ function newsPass(title: string, content: string) {
                 </NuxtLink>
             </div>
         </div>
+        <img v-if="loading === true" src="/img/loading.svg" alt="" class="loading-svg">
         <div>
             <NuxtPage :newsTitle="newsTitle" :newsContent="newsContent"></NuxtPage>
         </div>
@@ -91,6 +84,16 @@ function newsPass(title: string, content: string) {
 <style scoped>
 .news-container {
     margin-bottom: 50px;
+    position: relative;
+    height: 100%;
+    min-height: 600px;
+}
+
+.loading-svg {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
 }
 
 .news-list-container {
