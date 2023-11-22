@@ -31,8 +31,8 @@ const truncateText = (text, maxLength) => {
 useSeoMeta({
   title: newsTitle,
   ogTitle: newsTitle,
-  description: truncateText(getNews[0].newsContent, 50),
-  ogDescription: truncateText(getNews[0].newsContent, 50),
+  description: truncateText(newsContent, 50),
+  ogDescription: truncateText(newsContent, 50),
 })
 
 useHead({
