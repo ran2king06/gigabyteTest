@@ -19,6 +19,13 @@ const loading = ref(true)
 //     }
 // };
 
+useSeoMeta({
+  title: newsTitle,
+  ogTitle: newsTitle,
+  description: truncateText(getNews[0].newsContent, 50),
+  ogDescription: truncateText(getNews[0].newsContent, 50),
+})
+
 useHead({
     title: newsTitle,
     meta: [
