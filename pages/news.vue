@@ -12,6 +12,13 @@ let newsContent = "";
 
 const loading = ref(true)
 
+useSeoMeta({
+  title: "test",
+  ogTitle: "test",
+  description: "test",
+  ogDescription: "test",
+})
+
 onMounted(() => {
     const currentPath = route.path;
     let lang = "en" // Default English
