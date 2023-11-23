@@ -32,14 +32,7 @@ if (currentPath.includes('/tw')) {
     lang = "en";
 }
 
-useSeoMeta({
-    title: "test",
-    ogTitle: "test",
-    description: "test",
-    ogDescription: "test",
-});
-
-await useAsyncData('seo', async () => {
+useAsyncData('seo', () => {
     $fetch('https://gigabyte-test.vercel.app/api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
@@ -51,7 +44,6 @@ await useAsyncData('seo', async () => {
                 description: truncateText(d.description, 50),
                 ogDescription: truncateText(d.description, 50),
             });
-
         })
 })
 
