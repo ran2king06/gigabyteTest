@@ -32,6 +32,13 @@ if (currentPath.includes('/tw')) {
     lang = "en";
 }
 
+// useSeoMeta({
+//     title: "test",
+//     ogTitle: "test",
+//     description: "test",
+//     ogDescription: "test",
+// });
+
 await useAsyncData('seo', async () => {
     $fetch('https://gigabyte-test.vercel.app/api' + '/' + lang + '/Events/News', config)
         .then(v => {
