@@ -48,6 +48,7 @@ await useAsyncData('seo', () => {
         })
 })
 
+
 const getTaipeiTripInfoDetails = async () => {
     if (currentPath.includes('/tw')) {
         lang = "zh-tw";
