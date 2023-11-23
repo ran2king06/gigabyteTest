@@ -18,6 +18,16 @@ const truncateText = (text, maxLength) => {
     }
 }
 
+useSeoMeta({
+  title: 'My Amazing Site',
+  ogTitle: 'My Amazing Site',
+  description: 'This is my amazing site, let me tell you all about it.',
+  ogDescription: 'This is my amazing site, let me tell you all about it.',
+  ogImage: 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+})
+
+
 const getTaipeiTripInfoDetails = async () => {
     if (currentPath.includes('/tw')) {
         lang = "zh-tw";
@@ -34,13 +44,6 @@ const getTaipeiTripInfoDetails = async () => {
             });
             newsTitle.value = getNews[0].title;
             newsContent.value = getNews[0].description;
-
-            useSeoMeta({
-                title: getNews[0].title,
-                ogTitle: getNews[0].title,
-                description: truncateText(getNews[0].description, 50),
-                ogDescription: truncateText(getNews[0].description, 50),
-            })
         })
         .catch(error => {
             console.error('Error fetching data:', error);
