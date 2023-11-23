@@ -14,12 +14,9 @@ export default defineNuxtConfig({
       }
     }
   },
-  axios: {
-    proxy: true
-  },
-  generate: {
-    fallback: true
-  },
+  // generate: {
+  //   fallback: true
+  // },
 
   modules: [
     '@nuxtjs/i18n'

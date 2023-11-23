@@ -32,18 +32,20 @@ if (currentPath.includes('/tw')) {
     lang = "en";
 }
 
-useAsyncData('seo', () => {
-    $fetch('https://gigabyte-test.vercel.app/api' + '/' + lang + '/Events/News', config)
+useAsyncData('seo', async () => {
+    await $fetch('https://gigabyte-test.vercel.app/api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
                 return s.id.toString() === route.params.id;
             })
+            console.log(d)
             useSeoMeta({
                 title: d.title,
                 ogTitle: d.title,
                 description: truncateText(d.description, 50),
                 ogDescription: truncateText(d.description, 50),
             });
+
         })
 })
 
