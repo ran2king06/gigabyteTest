@@ -2,6 +2,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
   dev: 'production',
+  runtimeConfig: {
+    public: {
+      API_BASE_URL: process.env.BASE_API_URL,
+ 
+    },
+  },
   vite: {
     server: {
       cors: true,

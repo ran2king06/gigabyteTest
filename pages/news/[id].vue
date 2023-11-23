@@ -7,8 +7,10 @@ const $attrs = useAttrs();
 const currentPath = route.path;
 let lang = "en" // Default English
 
+const newsId = ref($attrs.newsId);
 const newsTitle = ref($attrs.newsTitle);
 const newsContent = ref($attrs.newsContent);
+
 
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
@@ -33,18 +35,27 @@ if (currentPath.includes('/tw')) {
 }
 
 useAsyncData('seo', async () => {
-    await $fetch('https://gigabyte-test.vercel.app/api' + '/' + lang + '/Events/News', config)
+    await $fetch("https://gigabyte-test.vercel.app/api" + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
                 return s.id.toString() === route.params.id;
             })
-            console.log(d)
-            useSeoMeta({
-                title: d.title,
-                ogTitle: d.title,
-                description: truncateText(d.description, 50),
-                ogDescription: truncateText(d.description, 50),
-            });
+
+            if(route.params.id === '45417') {
+                useSeoMeta({
+                    title: $t('customize-page'),
+                    ogTitle: $t('customize-page'),
+                    description: $t('customize-page'),
+                    ogDescription: $t('customize-page'),
+                });
+            } else {
+                useSeoMeta({
+                    title: d.title,
+                    ogTitle: d.title,
+                    description: truncateText(d.description, 50),
+                    ogDescription: truncateText(d.description, 50),
+                });
+            }
 
         })
 })
@@ -66,6 +77,23 @@ const getTaipeiTripInfoDetails = async () => {
             });
             newsTitle.value = getNews[0].title;
             newsContent.value = getNews[0].description;
+            newsId.value = getNews[0].id
+
+            if(route.params.id === '45417') {
+                useSeoMeta({
+                    title: $t('customize-page'),
+                    ogTitle: $t('customize-page'),
+                    description: $t('customize-page'),
+                    ogDescription: $t('customize-page'),
+                });
+            } else {
+                useSeoMeta({
+                title: newsTitle,
+                ogTitle: newsTitle,
+                description: truncateText(newsContent, 50),
+                ogDescription: truncateText(newsContent, 50),
+            });
+            }
         })
         .catch(error => {
             console.error('Error fetching data:', error);
@@ -85,8 +113,14 @@ onUnmounted(() => {
 
 <template>
     <div class="news-detail-container">
-        <h1>{{ newsTitle }}&nbsp;</h1>
-        <p v-html="newsContent"></p>
+        <div v-if="newsId && newsId === 45417">
+            <h1>{{ $t('customize-page') }}</h1>
+        </div>
+        <div v-else>
+            <h1>{{ newsTitle }}</h1>
+            <p v-html="newsContent"></p>
+        </div>
+
     </div>
 </template>
 

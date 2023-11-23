@@ -9,6 +9,7 @@ const localeLocation = useLocalePath();
 
 let newsTitle = "";
 let newsContent = "";
+let newsId = 0;
 
 const loading = ref(true)
 
@@ -52,9 +53,10 @@ function formatDate(inputDate: string) {
     return formattedDate;
 }
 
-function newsPass(title: string, content: string) {
+function newsPass(title: string, content: string, id: number) {
     newsTitle = title;
     newsContent = content
+    newsId = id
 }
 
 </script>
@@ -65,18 +67,19 @@ function newsPass(title: string, content: string) {
         <div v-if="!$route.params.id" class="news-list-container">
             <div v-for="(data, index) in responseData" :key="index" class="news-list-item">
                 <span class="date">{{ formatDate(data.posted) }}</span>
-                <NuxtLink @click="newsPass(data.title, data.description)" :to="localeLocation(
+                <NuxtLink @click="newsPass(data.title, data.description, data.id)" :to="localeLocation(
                     {
                         name: 'news-id',
                         params: { id: data.id }
                     })">
-                    <span>{{ data.title }}</span>
+                    <span v-if="data.id === 45417">{{ $t('customize-page') }}</span>
+                    <span v-else>{{ data.title }}</span>
                 </NuxtLink>
             </div>
         </div>
         <img v-if="loading === true" src="/img/loading.svg" alt="" class="loading-svg">
         <div>
-            <NuxtPage :newsTitle="newsTitle" :newsContent="newsContent"></NuxtPage>
+            <NuxtPage :newsTitle="newsTitle" :newsContent="newsContent" :newsId="newsId"></NuxtPage>
         </div>
     </div>
 </template>
