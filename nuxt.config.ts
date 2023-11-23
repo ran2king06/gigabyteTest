@@ -5,7 +5,6 @@ export default defineNuxtConfig({
   vite: {
     server: {
       cors: true,
-      open: true,
       proxy: {
         '/api': {
           target: 'https://www.travel.taipei/open-api/',
@@ -14,6 +13,9 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+  axios: {
+    proxy: true
   },
   generate: {
     fallback: true
