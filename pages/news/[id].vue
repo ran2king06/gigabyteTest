@@ -18,6 +18,36 @@ const truncateText = (text, maxLength) => {
     }
 }
 
+const config = {
+    headers: {
+        "Accept": "application/json"
+    }
+}
+
+if (currentPath.includes('/tw')) {
+    lang = "zh-tw";
+} else if (currentPath.includes('/en')) {
+    lang = "en";
+} else {
+    lang = "en";
+}
+
+await useAsyncData('seo', () => {
+    const f = $fetch('/api' + '/' + lang + '/Events/News', config)
+        .then(v => {
+            const d = v.data.find((s) => {
+                return s.id.toString() === route.params.id;
+            })
+            useSeoMeta({
+                title: d.title,
+                ogTitle: d.title,
+                description: truncateText(d.description, 50),
+                ogDescription: truncateText(d.description, 50),
+            });
+
+        })
+})
+
 const getTaipeiTripInfoDetails = async () => {
     if (currentPath.includes('/tw')) {
         lang = "zh-tw";
@@ -39,14 +69,6 @@ const getTaipeiTripInfoDetails = async () => {
             console.error('Error fetching data:', error);
         });
 }
-
-getTaipeiTripInfoDetails();
-useSeoMeta({
-    title: newsTitle,
-    ogTitle: newsTitle,
-    description: truncateText(newsContent, 50),
-    ogDescription: truncateText(newsContent, 50),
-});
 
 onMounted(() => {
     if (route.params.id) {
