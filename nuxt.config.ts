@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
+  target: 'server',
   dev: 'production',
   vite: {
     server: {

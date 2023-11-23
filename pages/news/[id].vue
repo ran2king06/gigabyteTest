@@ -10,22 +10,6 @@ let lang = "en" // Default English
 const newsTitle = ref($attrs.newsTitle);
 const newsContent = ref($attrs.newsContent);
 
-// const config = {
-//     headers: {
-//         'Accept': 'application/json',
-//         'Access-Control-Allow-Origin': '*',
-//         'Access-Control-Allow-Headers': 'Content-Type,token'
-//     }
-// };
-
-useHead({
-    title: newsTitle,
-    meta: [
-    { name: 'description', content: newsContent }
-  ],
-})
-
-// 若超過50個字，則只顯示50個字
 const truncateText = (text, maxLength) => {
     if (text.length > maxLength) {
         return text.slice(0, maxLength) + '...';
@@ -34,7 +18,6 @@ const truncateText = (text, maxLength) => {
     }
 }
 
-// 頁面刷新或直接進去則呼叫此 Function
 const getTaipeiTripInfoDetails = async () => {
     if (currentPath.includes('/tw')) {
         lang = "zh-tw";
@@ -43,9 +26,6 @@ const getTaipeiTripInfoDetails = async () => {
     } else {
         lang = "en";
     }
-
-    // const cors = 'https://cors-anywhere.herokuapp.com/'; // use cors-anywhere to fetch api data
-    // const url = 'https://www.travel.taipei/open-api/'; // origin api url
 
     await axios.get('/api' + '/' + lang + '/Events/News')
         .then(response => {
