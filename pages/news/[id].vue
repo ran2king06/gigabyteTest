@@ -42,12 +42,21 @@ useAsyncData('seo', async () => {
             })
 
             if(route.params.id === '45417') {
-                useSeoMeta({
-                    title: $t('customize-page'),
-                    ogTitle: $t('customize-page'),
-                    description: $t('customize-page'),
-                    ogDescription: $t('customize-page'),
-                });
+                if(lang === "zh-tw") {
+                    useSeoMeta({
+                        title: "客製網址頁面",
+                        ogTitle: "客製網址頁面",
+                        description: "客製網址頁面",
+                        ogDescription: "客製網址頁面",
+                    });
+                } else {
+                    useSeoMeta({
+                        title: "Customize Page",
+                        ogTitle: "Customize Page",
+                        description: "Customize Page",
+                        ogDescription: "Customize Page",
+                    });
+                }
             } else {
                 useSeoMeta({
                     title: d.title,
@@ -80,12 +89,22 @@ const getTaipeiTripInfoDetails = async () => {
             newsId.value = getNews[0].id
 
             if(route.params.id === '45417') {
-                useSeoMeta({
-                    title: $t('customize-page'),
-                    ogTitle: $t('customize-page'),
-                    description: $t('customize-page'),
-                    ogDescription: $t('customize-page'),
-                });
+                if(lang === "zh-tw") {
+                    useSeoMeta({
+                        title: "客製網址頁面",
+                        ogTitle: "客製網址頁面",
+                        description: "客製網址頁面",
+                        ogDescription: "客製網址頁面",
+                    });
+                } else {
+                    useSeoMeta({
+                        title: "Customize Page",
+                        ogTitle: "Customize Page",
+                        description: "Customize Page",
+                        ogDescription: "Customize Page",
+                    });
+                }
+
             } else {
                 useSeoMeta({
                 title: newsTitle,
