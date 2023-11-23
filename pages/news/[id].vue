@@ -32,10 +32,8 @@ if (currentPath.includes('/tw')) {
     lang = "en";
 }
 
-const headers = useRequestHeaders(['cookie'])
-
 await useAsyncData('seo', async () => {
-    $fetch('/api' + '/' + lang + '/Events/News', config)
+    $fetch('https://www.travel.taipei/open-api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
                 return s.id.toString() === route.params.id;
