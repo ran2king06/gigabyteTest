@@ -1,6 +1,5 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  ssr: true,
   dev: 'production',
   vite: {
     server: {
@@ -14,6 +13,7 @@ export default defineNuxtConfig({
       }
     }
   },
+  ssr: true,
   axios: {
     proxy: true
   },

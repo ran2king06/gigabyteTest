@@ -33,7 +33,7 @@ if (currentPath.includes('/tw')) {
 }
 
 await useAsyncData('seo', async () => {
-    $fetch('https://www.travel.taipei/open-api' + '/' + lang + '/Events/News', config)
+    $fetch('/api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
                 return s.id.toString() === route.params.id;
