@@ -33,7 +33,7 @@ if (currentPath.includes('/tw')) {
 }
 
 await useAsyncData('seo', async () => {
-    $fetch('/api' + '/' + lang + '/Events/News', config)
+    axios.get('/api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
                 return s.id.toString() === route.params.id;
