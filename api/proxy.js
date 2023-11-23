@@ -3,9 +3,8 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 
 const proxy = createProxyMiddleware({
     target: "https://www.travel.taipei/open-api/", 
-    pathRewrite: {'^/api': '/', }, 
+    pathRewrite: {'^/api': '', }, 
     changeOrigin: true,
-    ws: true, // proxy websockets
   });
   
   export default proxy;
