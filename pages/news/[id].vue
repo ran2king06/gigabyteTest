@@ -32,7 +32,9 @@ if (currentPath.includes('/tw')) {
     lang = "en";
 }
 
-await useAsyncData('seo', () => {
+const headers = useRequestHeaders(['cookie'])
+
+await useAsyncData('seo', async () => {
     $fetch('/api' + '/' + lang + '/Events/News', config)
         .then(v => {
             const d = v.data.find((s) => {
